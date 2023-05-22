@@ -14,3 +14,6 @@ This is a simple app using python, javascript and html/css to generate Sealed Se
 - Build the Dockerfile
 - Create a deployment with generated image
 - Mount your secret cert.pem into /app/cert/cert.pem
+
+##### Interface
+![interface](https://i.ibb.co/r3sxY56/sealedsecret-simple-interface.png)
