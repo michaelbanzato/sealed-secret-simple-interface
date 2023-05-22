@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sealed Secret</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Sealed Secret YAML Generator</h1>
+    <form id="yaml-form" method="POST" action="{{ url_for('generate_yaml') }}">
+        <label for="namespace">Namespace:</label>
+        <input type="text" id="namespace" name="namespace"><br>
+
+        <label for="secret-name">Secret Name:</label>
+        <input type="text" id="secret-name" name="secret-name"><br>
+
+        <h3>Variables:</h3>
+        <div id="variables-container">
+            <div class="variable-input">
+                <input type="text" name="variable[]" placeholder="variable">
+                <input type="text" name="value[]" placeholder="value">
+                <button type="button" class="remove-variable">remove</button>
+            </div>
+        </div>
+        <button type="button" id="add-variable">add variable</button>
+        <br><br>
+        <button type="submit">Download YAML</button>
+    </form>
+
+    <div id="output-container">
+        <h2>Output:</h2>
+        <pre id="output"></pre>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
