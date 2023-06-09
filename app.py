@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, send_file
-from api.yaml_gen import generate_yaml
+from api.yaml_gen import generate_yml
 from os import system
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/generate-yaml', methods=['POST'])
 def generate_yaml():
@@ -15,7 +17,7 @@ def generate_yaml():
     variables = [var.strip().replace(' ', '-') for var in request.form.getlist('variable[]')]
     values = request.form.getlist('value[]')
 
-    sealedsecret = generate_yaml(namespace=namespace,
+    sealedsecret = generate_yml(namespace=namespace,
                                  secret_name=secret_name,
                                  variables=variables,
                                  values=values)
@@ -23,10 +25,12 @@ def generate_yaml():
     # Return the renamed file for download
     return send_file(sealedsecret, as_attachment=True)
 
+
 # Remove yaml files after each request
 @app.teardown_request
 def remove_temp_files(exception=None):
     system('sleep 5 && rm -f static/*.yaml')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

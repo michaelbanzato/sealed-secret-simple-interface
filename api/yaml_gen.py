@@ -1,6 +1,7 @@
 import subprocess
 
-def generate_yaml(namespace=None, secret_name=None, variables=None, values=None):
+
+def generate_yml(namespace=None, secret_name=None, variables=None, values=None):
     namespace = namespace
     secret_name = secret_name
     variables = variables
